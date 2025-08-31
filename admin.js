@@ -149,7 +149,7 @@ async function loadList() {
     if (items.length === 0) return listDiv.innerHTML = 'No recordings yet.';
     listDiv.innerHTML = items.map(it => {
       const url = SERVER_BASE + '/recordings/' + it.filename;
-      return \`
+      return `
         <div class="card">
           <div><b>ID:</b> \${it.id}</div>
           <div><b>Time:</b> \${new Date(it.createdAt).toLocaleString()}</div>
@@ -158,7 +158,7 @@ async function loadList() {
             <a href="\${url}" download>Download</a>
           </div>
         </div>
-      \`;
+      `;
     }).join('');
   } catch (e) {
     listDiv.innerHTML = '<span class="err">Error loading list</span>';
