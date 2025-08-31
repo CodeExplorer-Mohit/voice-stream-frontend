@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; }
+    button { padding: 8px 12px; border-radius: 8px; border: 1px solid #888; cursor: pointer; }
+    .pill { display:inline-block; padding:4px 8px; border-radius:999px; background:#eee; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Hello User</h2>
+    <p>Click the button below and allow microphone access to start the session.</p>
+    <button id="enableBtn">Enable Microphone</button>
+    <div style="margin-top:8px;">Status: <span id="status" class="pill">idle</span></div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="./user.js"></script>
+</body>
+</html>
