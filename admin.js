@@ -137,7 +137,6 @@ async function uploadRecording() {
     recMsg.innerHTML = '<span class="err">Upload error</span>';
   }
 }
-
 async function loadList() {
   listDiv.innerHTML = 'Loading…';
   try {
@@ -145,9 +144,17 @@ async function loadList() {
       headers: { 'x-admin-token': ADMIN_TOKEN }
     });
     const items = await res.json();
-    if (!Array.isArray(items)) return listDiv.innerHTML = 'No data';
-    if (items.length === 0) return listDiv.innerHTML = 'No recordings yet.';
 
+    if (!Array.isArray(items)) {
+      listDiv.innerHTML = 'No data';
+      return;
+    }
+    if (items.length === 0) {
+      listDiv.innerHTML = 'No recordings yet.';
+      return;
+    }
+
+    // ✅ Template string with correct interpolation
     listDiv.innerHTML = items.map(it => {
       const url = SERVER_BASE + '/recordings/' + it.filename;
       return `
@@ -162,9 +169,11 @@ async function loadList() {
       `;
     }).join('');
   } catch (e) {
+    console.error("Error loading list:", e);
     listDiv.innerHTML = '<span class="err">Error loading list</span>';
   }
 }
+
 
 
 // async function loadList() {
