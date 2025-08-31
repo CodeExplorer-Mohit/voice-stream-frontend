@@ -147,15 +147,16 @@ async function loadList() {
     const items = await res.json();
     if (!Array.isArray(items)) return listDiv.innerHTML = 'No data';
     if (items.length === 0) return listDiv.innerHTML = 'No recordings yet.';
+
     listDiv.innerHTML = items.map(it => {
       const url = SERVER_BASE + '/recordings/' + it.filename;
       return `
         <div class="card">
-          <div><b>ID:</b> \${it.id}</div>
-          <div><b>Time:</b> \${new Date(it.createdAt).toLocaleString()}</div>
-          <audio controls src="\${url}" style="width:100%;"></audio>
+          <div><b>ID:</b> ${it.id}</div>
+          <div><b>Time:</b> ${new Date(it.createdAt).toLocaleString()}</div>
+          <audio controls src="${url}" style="width:100%;"></audio>
           <div class="row" style="margin-top:6px;">
-            <a href="\${url}" download>Download</a>
+            <a href="${url}" download>Download</a>
           </div>
         </div>
       `;
@@ -164,3 +165,31 @@ async function loadList() {
     listDiv.innerHTML = '<span class="err">Error loading list</span>';
   }
 }
+
+
+// async function loadList() {
+//   listDiv.innerHTML = 'Loading…';
+//   try {
+//     const res = await fetch(SERVER_BASE + '/api/recordings', {
+//       headers: { 'x-admin-token': ADMIN_TOKEN }
+//     });
+//     const items = await res.json();
+//     if (!Array.isArray(items)) return listDiv.innerHTML = 'No data';
+//     if (items.length === 0) return listDiv.innerHTML = 'No recordings yet.';
+//     listDiv.innerHTML = items.map(it => {
+//       const url = SERVER_BASE + '/recordings/' + it.filename;
+//       return `
+//         <div class="card">
+//           <div><b>ID:</b> \${it.id}</div>
+//           <div><b>Time:</b> \${new Date(it.createdAt).toLocaleString()}</div>
+//           <audio controls src="\${url}" style="width:100%;"></audio>
+//           <div class="row" style="margin-top:6px;">
+//             <a href="\${url}" download>Download</a>
+//           </div>
+//         </div>
+//       `;
+//     }).join('');
+//   } catch (e) {
+//     listDiv.innerHTML = '<span class="err">Error loading list</span>';
+//   }
+// }
