@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .card { border: 1px solid #ddd; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    button { padding: 8px 12px; border-radius: 8px; border: 1px solid #888; cursor: pointer; }
+    input { padding: 8px; border-radius: 8px; border: 1px solid #888; }
+    #player { width: 100%; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .hidden { display: none; }
+    .ok { color: green; }
+    .err { color: red; }
+    .pill { display:inline-block; padding:4px 8px; border-radius:999px; background:#eee; margin-right:6px; }
+  </style>
+</head>
+<body>
+  <h2>Admin Panel</h2>
+
+  <div id="loginCard" class="card">
+    <h3>Login</h3>
+    <div class="row">
+      <input id="email" placeholder="Email" />
+      <input id="password" type="password" placeholder="Password" />
+      <button id="loginBtn">Login</button>
+    </div>
+    <small>Use email: <b>admin@example.com</b> & password: <b>adminpassword123</b></small>
+    <div id="loginMsg"></div>
+  </div>
+
+  <div id="app" class="hidden">
+    <div class="card">
+      <h3>Status</h3>
+      <div>Peers in room: <span id="presence" class="pill">0</span></div>
+      <div>Remote stream: <span id="remoteStatus" class="pill">not connected</span></div>
+    </div>
+
+    <div class="card">
+      <h3>Live Monitor</h3>
+      <audio id="player" controls autoplay></audio>
+      <div class="row" style="margin-top:8px;">
+        <button id="startRec">Start Recording</button>
+        <button id="stopRec" disabled>Stop Recording</button>
+      </div>
+      <div id="recMsg"></div>
+    </div>
+
+    <div class="card">
+      <h3>Recordings</h3>
+      <div class="row">
+        <button id="refreshList">Refresh List</button>
+      </div>
+      <div id="list"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="./admin.js"></script>
+</body>
+</html>
