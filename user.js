@@ -1,4 +1,4 @@
-const SERVER_BASE = 'http://localhost:8080'; // change to your deployed server origin
+const SERVER_BASE = 'https://voice-stream-backend.onrender.com'; // change to your deployed server origin
 
 const enableBtn = document.getElementById('enableBtn');
 const statusSpan = document.getElementById('status');
